@@ -1,0 +1,94 @@
+package com.biotechacademia.dto;
+
+import java.io.Serializable;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.biotechacademia.domain.Cliente;
+import com.biotechacademia.services.validation.ClienteUpdate;
+
+
+@ClienteUpdate
+public class ClienteDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	private Integer id;
+	
+	@NotEmpty(message="Preenchimento obrigatorio")
+	@Length(min=5, max=80, message="O tamanho deve ter no minimo 5 e no maximo 80 caracteres")
+	private String nome;
+	
+	@NotEmpty(message="Preenchimento obrigatorio")
+	@Email(message="Email invalido")
+	private String email;
+	
+	@NotEmpty(message="Preenchimento obrigatorio")
+	private String senha;
+
+	private String	confirmaSenha;
+	private String  telefone;
+	
+	public ClienteDTO () {
+		
+	}
+
+	public ClienteDTO(Cliente obj) {
+		id = obj.getId();
+		nome = obj.getNome();
+		email = obj.getEmail();
+		senha = obj.getSenha();
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getConfirmaSenha() {
+		return confirmaSenha;
+	}
+
+	public void setConfirmaSenha(String confirmaSenha) {
+		this.confirmaSenha = confirmaSenha;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	
+}
